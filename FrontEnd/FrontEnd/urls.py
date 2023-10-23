@@ -19,6 +19,5 @@ from django.urls import path
 from FrontEnd.view import idk
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('getArchivo/',idk),
+    path('pedirEntrada/',pedirEntrada),
 ]
