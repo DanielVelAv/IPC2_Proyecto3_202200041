@@ -17,7 +17,6 @@ def idk(request):
     html = objetoTemplate.render({})
     return HttpResponse(html)
 
-@ensure_csrf_cookie
 def pedirEntrada(request):
     context = RequestContext(request)
     if request.method == 'POST':
