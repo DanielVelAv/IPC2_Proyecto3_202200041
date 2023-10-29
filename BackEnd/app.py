@@ -1,50 +1,53 @@
 from flask import Flask,jsonify,request
 from flask_cors import CORS
+from main import Main
+from main import Bd
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/',methods=[''])
+@app.route('/',methods=['GET'])
 def hello_world():
-    return jsonify({'message': 'Prueba Post'})
-
-@app.route('/prueba',methods=['GET'])
-def prueba():
-    if request.method == 'POST':
-        nombre = request.form['txtNombre']
-        passw = request.form['txtPassword']
-
-        return jsonify({'message': 'usuario Agregado', 'nombre': nombre, 'contraseña': passw})
-
-@app.route('/pruebabybody',methods=['GET'])
-def byBody():
-    micurso = request.json['curso']
-    miseccion = request.json['seccion']
-    return jsonify({'message': 'Curso Agregado', 'curso':micurso, 'secion': miseccion})
+    return jsonify({'message': 'Funcionando Jefe'})
 
 @app.route('/subirA',methods=['POST'])
 def archivo():
     archivo = request.form['Entrada']
 
-@app.route('/grabarMensaje',methods=['POST'])
+@app.route('/entradaMensaje',methods=['POST'])
 def grabarMensaje():
-    pass
+    if request.method == 'POST':
+        archivoMSg = request.files['archivoMsg']
+        bd = Bd()
+        bd.anadir(archivoMSg)
+        '''MsgConverted = mn.XML_JSO(archivoMSg)'''
+        '''print(MsgConverted)'''
+        print(archivoMSg)
+        return jsonify({'message':"El archivo se recibio exitosamente"})
 
-@app.route('/grabarConfiguracion',methods=['POST'])
+@app.route('/CargaArchivosConfiguracion',methods=['POST'])
 def grabarConfiguracion():
-    pass
+    if request.method == 'POST':
+        archivoDiccionario = request.files['archivoDicc']
+        mn = Main()
+        DiccionarioConverted = mn.XML_JSO(archivoDiccionario)
+        print(DiccionarioConverted)
+        return jsonify({'message': "El archivo se recibio exitosamente", "Datos": DiccionarioConverted})
 
 @app.route('/LimpiarDatos',methods=['POST'])
 def limpiarDatos():
-    pass
+    if request.method == 'POST':
+        gg = Bd()
+        gg.vaciar()
+        return jsonify({'message':"Se han limpiado los datos correctamente"})
 
-@app.route('/devolverHastags',methods=['POST'])
+@app.route('/devolverHastags',methods=['GET'])
 def devolverHastags():
     pass
 
-@app.route('/devolverMenciones',methods=['POST'])
+@app.route('/devolverMenciones',methods=['GET'])
 def devolverMenc():
     pass
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=4000)
