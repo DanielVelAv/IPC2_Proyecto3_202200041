@@ -16,9 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from FrontEnd.view import idk
+from FrontEnd.view import idk,pedirEntrada
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('getArchivo/',idk),
+    path('pedirEntrada/',pedirEntrada),
 ]
