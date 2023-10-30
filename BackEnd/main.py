@@ -39,5 +39,5 @@ class Bd():
         with open(self.bdPath,'w') as archivo:
             archivo.write(xml+msjA+inforSinE+sinP+msjC)
 
-    def añadirDiccionario(self):
+    def anadirDiccionario(self):
         pass

@@ -2,6 +2,7 @@ from flask import Flask,jsonify,request
 from flask_cors import CORS
 from main import Main
 from main import Bd
+from ER import ER
 
 app = Flask(__name__)
 CORS(app)
@@ -43,11 +44,14 @@ def limpiarDatos():
 
 @app.route('/devolverHastags',methods=['GET'])
 def devolverHastags():
-    pass
+    mnE = ER()
+    mnE.getDatos()
+    return jsonify({'message':"Accion realizada con exito"})
+
 
 @app.route('/devolverMenciones',methods=['GET'])
 def devolverMenc():
     pass
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    app.run(debug=True, port=7000)
