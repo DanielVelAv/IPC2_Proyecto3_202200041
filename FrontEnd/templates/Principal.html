@@ -6,10 +6,11 @@
 </head>
 <body>
 
-    <form action=" ">
+    <form action="/pedirEntrada/" method="post">
+        {% csrf_token %}
         <p>Ingrese el archivo a Subir</p>
-        <input type="file"><br><br>
-        <button type="submit">Analizar</button>
+        <input type="file" id="archivoE" name="archivoE" required><br><br>
+        <button type="submit">Ingresar</button>
     </form>
 
 </body>
