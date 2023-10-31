@@ -10,13 +10,30 @@ Twitter = {
 
 }
 
+Diccionario = {
+
+}
+
 class ER():
     def __init__(self):
         self.raiz = ET.parse("C:/Users/dolyaD/Documents/GitHub/IPC2_Proyecto3_202200041/BackEnd/db.xml").getroot()
+        self.raizDiccionario = ET.parse("C:/Users/dolyaD/Documents/GitHub/IPC2_Proyecto3_202200041/BackEnd/dbDiccionario.xml").getroot()
 
     def getDatos(self):
         fecha = None
         texto = None
+
+        for h in self.raizDiccionario.findall('sentimientos_negativos'):
+            for g in h.findall('palabra'):
+                print(g.text)
+                Diccionario[g.text] = 'Negativo'
+
+        for o in self.raizDiccionario.findall('sentimientos_positivos'):
+            for y in o.findall('palabra'):
+                Diccionario[y.text] = 'Positivo'
+
+
+        print(Diccionario)
 
         i = 0
 
@@ -55,6 +72,16 @@ class ER():
                     j += 1
                 StringMencion = txtCompleto[carI:j]
                 print("@"+StringMencion)
+            elif caracterAnalizado.isalpha():
+                k = j
+                while k < len(txtCompleto) and txtCompleto[k].isalpha():
+                    k += 1
+                string = txtCompleto[j:k]
+                if string in Diccionario:
+                    pass
+                else:
+                    pass
+                j = k
             else:
                 j+=1
 

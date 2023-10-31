@@ -21,8 +21,6 @@ def grabarMensaje():
         archivoMSg = request.files['archivoMsg']
         bd = Bd()
         bd.anadir(archivoMSg)
-        '''MsgConverted = mn.XML_JSO(archivoMSg)'''
-        '''print(MsgConverted)'''
         print(archivoMSg)
         return jsonify({'message':"El archivo se recibio exitosamente"})
 
@@ -30,10 +28,9 @@ def grabarMensaje():
 def grabarConfiguracion():
     if request.method == 'POST':
         archivoDiccionario = request.files['archivoDicc']
-        mn = Main()
-        DiccionarioConverted = mn.XML_JSO(archivoDiccionario)
-        print(DiccionarioConverted)
-        return jsonify({'message': "El archivo se recibio exitosamente", "Datos": DiccionarioConverted})
+        bd = Bd()
+        bd.anadirDiccionario(archivoDiccionario)
+        return jsonify({'message': "El archivo se recibio exitosamente"})
 
 @app.route('/LimpiarDatos',methods=['POST'])
 def limpiarDatos():
