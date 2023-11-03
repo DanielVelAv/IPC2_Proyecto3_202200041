@@ -26,34 +26,44 @@ class ER():
         for h in self.raizDiccionario.findall('sentimientos_negativos'):
             for g in h.findall('palabra'):
                 print(g.text)
-                Diccionario[g.text] = 'Negativo'
+                SinE = g.text.strip()
+                Sinupper = SinE.lower()
+                Diccionario[Sinupper] = 'Negativo'
 
         for o in self.raizDiccionario.findall('sentimientos_positivos'):
             for y in o.findall('palabra'):
-                Diccionario[y.text] = 'Positivo'
+                sinEs = y.text.strip()
+                SinUpp = sinEs.lower()
+                Diccionario[SinUpp] = 'Positivo'
 
 
         print(Diccionario)
 
-        i = 0
+        m = 0
 
         for i in self.raiz.findall('MENSAJE'):
+            m += 1
             for j in i.findall('FECHA'):
                 fechasCompletas = j.text
                 fecha = fechasCompletas
             for k in i.findall('TEXTO'):
                 textoBD = k.text
                 texto = textoBD
-            self.analizarMensaje(textoBD)
-            self.obtenerFecha(fechasCompletas)
+            Hashtag, Menciones, PPositivas,PNegativas = self.analizarMensaje(textoBD)
+            FechaSolitaria = self.obtenerFecha(fechasCompletas)
+            print("-Fecha-",FechaSolitaria,"-Hashtags-",Hashtag,"-Menciones-",Menciones,"-Positivas-",PPositivas,"-Negativas-",PNegativas)
+            Twitter[m] = [FechaSolitaria,Hashtag,Menciones,PPositivas,PNegativas]
 
-        return fecha,texto
+        return Twitter
+
 
     def analizarMensaje(self,txtCompleto):
 
-        Hashtag = None
-        Mencion = None
-
+        Hashtag = []
+        Mencion = []
+        Negativos = 0
+        Positivos = 0
+        Neutros = 0
 
         j = 0
         while j<len(txtCompleto):
@@ -65,6 +75,7 @@ class ER():
                 string = txtCompleto[j+1:PosFinal]
                 j = PosFinal + 1
                 print("#"+string+"#")
+                Hashtag.append("#" + string + "#")
             elif caracterAnalizado == "@":
                 j+=1
                 carI = j
@@ -72,18 +83,28 @@ class ER():
                     j += 1
                 StringMencion = txtCompleto[carI:j]
                 print("@"+StringMencion)
+                Mencion.append("@"+StringMencion)
             elif caracterAnalizado.isalpha():
                 k = j
                 while k < len(txtCompleto) and txtCompleto[k].isalpha():
                     k += 1
                 string = txtCompleto[j:k]
-                if string in Diccionario:
-                    pass
+                print(string)
+                StringSinM = string.lower()
+                if StringSinM in Diccionario:
+                    print("Se encuentra")
+                    if Diccionario[StringSinM] == "Negativo":
+                        Negativos += 1
+                    elif Diccionario[StringSinM] == "Positivo":
+                        Positivos += 1
+                    print("negativos: ", Negativos, " Positivos: ", Positivos)
                 else:
-                    pass
+                    print("Nope")
                 j = k
             else:
                 j+=1
+
+        return Hashtag,Mencion,Positivos,Negativos
 
     def obtenerFecha(self,fecha):
         fcompleta = fecha
@@ -95,3 +116,4 @@ class ER():
                 i += 10
             else:
                 i += 1
+        return fechaApartada

@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from FrontEnd.view import idk,pedirEntrada
+from FrontEnd.view import idk,pedirEntrada,pedirDiccionario,resetearDatos,consultarMenciones,consultarSentimientos,consultarHashtags,ayuda
 
 urlpatterns = [
     path('pedirEntrada/',pedirEntrada),
+    path('pedirDiccionario/',pedirDiccionario),
+    path('resetearDatos/',resetearDatos),
+    path('devolverHashtags/',consultarHashtags),
+    path('devolverMenciones/',consultarMenciones),
+    path('devolverSentimientos/',consultarSentimientos),
+    path('ayuda/',ayuda)
 ]

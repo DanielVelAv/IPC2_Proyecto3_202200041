@@ -1,18 +1,18 @@
 <diccionario>
 <sentimientos_positivos>
 
-<palabra> bueno </palabra><palabra> cool </palabra></sentimientos_positivos>
+<palabra> bueno </palabra><palabra> excelente </palabra><palabra> cool </palabra><palabra> satisfecho </palabra></sentimientos_positivos>
 
 <sentimientos_negativos>
 
-<palabra> malo </palabra><palabra> p&#233;simo </palabra><palabra> triste </palabra><palabra> decepcionado </palabra></sentimientos_negativos>
+<palabra> malo </palabra><palabra> pesimo </palabra><palabra> triste </palabra><palabra> molesto </palabra><palabra> decepcionado </palabra><palabra> enojo </palabra></sentimientos_negativos>
 
 <positivas_rechazadas>
 
-<palabra> excelente </palabra><palabra> enojo </palabra><palabra> satisfecho </palabra><palabra> molesto </palabra><palabra> excelente </palabra><palabra> enojo </palabra><palabra> satisfecho </palabra><palabra> molesto </palabra></positivas_rechazadas>
+</positivas_rechazadas>
 
 <negativas_rechazadas>
 
-<palabra> satisfecho </palabra><palabra> molesto </palabra><palabra> excelente </palabra><palabra> enojo </palabra><palabra> satisfecho </palabra><palabra> molesto </palabra><palabra> excelente </palabra><palabra> enojo </palabra></negativas_rechazadas>
+</negativas_rechazadas>
 
 </diccionario>
