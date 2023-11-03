@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultar Sentimientos</title>
+    <link rel="stylesheet" href="{% static 'StyleDevolverH.css' %}">
+</head>
+<body>
+
+    <form method="POST" action="/devolverSentimientos/" enctype="multipart/form-data" id="Has">
+        <center>
+        <h1>Devolver Sentimientos</h1>
+        <label><input type="date" id = "PrimerRango" name="PrimerRango" required></label>
+        <label><input type="date" id="SegundoRango" name = "SegundoRango" required></label><br><br>
+        <button type="submit" id="btn">Mostrar Datos</button>
+        </center>
+    </form>
+
+</body>
+</html>

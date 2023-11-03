@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado Sentimientos</title>
+    <link rel="stylesheet" href="{% static 'StyleListados.css' %}">
+</head>
+<body>
+    <section id="contenido">
+    <center>
+    <h1>Listado de Sentimientos Filtrado</h1>
+    {% for fecha,senP in SentP.items %}
+        <p id="fecha">****{{ fecha }}****</p>
+        <p>Sentimientos Postitivos:{{ senP}}</p>
+    {% endfor %}
+    </center>
+    </section>
+
+</body>
+</html>
