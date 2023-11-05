@@ -75,7 +75,7 @@ def devolverSentimientos():
         DiccionarioConDatos = mnE.getDatos()
         sentimientos = Sentimientos(DiccionarioConDatos,PrimerRango,SegundoRango)
         SentiFiltPosi,SentiFiltNega = sentimientos.filtrarSentimientos()
-        return SentiFiltPosi,SentiFiltNega
+        return {'P':SentiFiltPosi,'N':SentiFiltNega}
 
 if __name__ == '__main__':
     app.run(debug=True, port=7000)
